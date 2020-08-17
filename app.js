@@ -16,8 +16,10 @@ expressHbs({
 app.set('view engine', 'hbs');
 app.set('views', 'views');
 
+const indexRoute = require('./routes/index')
 const registerData = require('./routes/register');
-const homeRoute = require('./routes/hostelList');
+const hostelRoute = require('./routes/hostelList');
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -25,7 +27,9 @@ port = 3000;
 
 app.use(registerData.routes);
 
-app.use(homeRoute);
+app.use(indexRoute);
+
+app.use(hostelRoute)
 
 app.use((req, res, next) => {
     res.status(404).render('404', {pageTitle: 'Page not Found'})
